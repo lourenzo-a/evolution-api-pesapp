@@ -818,12 +818,6 @@ export class BusinessStartupService extends ChannelStartupService {
             type: 'interactive',
             interactive: {
               type: 'button',
-              header: {
-                type: message['mediaType'],
-                [message['mediaType']]: {
-                  link: message['link'],
-                },
-              },
               body: {
                 text: message['text'] || 'Select',
               },
@@ -832,6 +826,17 @@ export class BusinessStartupService extends ChannelStartupService {
               },
             },
           };
+          
+           // Adicionar o header condicionalmente, se existir no message
+          if (message['header']) {
+            content.interactive.header = {
+              type: message['header'].type,
+              [message['header'].type]: {
+                link: message['header'][message['header'].type].link,
+              },
+            };
+          }
+
           quoted ? (content.context = { message_id: quoted.id }) : content;
           let formattedText = '';
           for (const item of message['buttons']) {
@@ -1139,7 +1144,12 @@ export class BusinessStartupService extends ChannelStartupService {
             },
           };
         }),
-        header: { type: data.mediaType, image: { link: data.mediaLink }},
+        header: data.mediaType && data.mediaLink ? {
+          type: data.mediaType,
+          [data.mediaType]: {
+            link: data.mediaLink,
+          }
+        } : undefined,
         [embeddedMedia?.mediaKey]: embeddedMedia?.message,
       },
       {
