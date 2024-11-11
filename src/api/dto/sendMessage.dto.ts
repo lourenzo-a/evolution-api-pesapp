@@ -117,6 +117,8 @@ export class SendButtonsDto extends Metadata {
   description?: string;
   footer?: string;
   buttons: Button[];
+  mediaType: MediaType;
+  mediaLink: string;
 }
 
 export class SendLocationDto extends Metadata {

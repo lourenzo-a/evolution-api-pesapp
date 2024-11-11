@@ -818,6 +818,12 @@ export class BusinessStartupService extends ChannelStartupService {
             type: 'interactive',
             interactive: {
               type: 'button',
+              header: {
+                type: message['mediaType'],
+                [message['mediaType']]: {
+                  link: message['link'],
+                },
+              },
               body: {
                 text: message['text'] || 'Select',
               },
@@ -1133,6 +1139,7 @@ export class BusinessStartupService extends ChannelStartupService {
             },
           };
         }),
+        header: { type: data.mediaType, image: { link: data.mediaLink }},
         [embeddedMedia?.mediaKey]: embeddedMedia?.message,
       },
       {
