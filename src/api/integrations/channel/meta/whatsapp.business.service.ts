@@ -819,9 +819,9 @@ export class BusinessStartupService extends ChannelStartupService {
             interactive: {
               type: 'button',
               header: {
-                type: message['mediaType'],
-                [message['mediaType']]: {
-                  link: message['link'],
+                type: message['header']['type'],
+                [message['header']['type']]: {
+                  link: message['header']['link'],
                 },
               },
               body: {
