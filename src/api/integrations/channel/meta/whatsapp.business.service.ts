@@ -826,7 +826,7 @@ export class BusinessStartupService extends ChannelStartupService {
               },
             },
           };
-          
+
            // Adicionar o header condicionalmente, se existir no message
           if (message['header']) {
             content.interactive.header = {
