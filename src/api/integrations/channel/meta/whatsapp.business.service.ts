@@ -1132,8 +1132,9 @@ export class BusinessStartupService extends ChannelStartupService {
     if (!arrayUnique(btnItems.text) || !arrayUnique(btnItems.ids)) {
       throw new BadRequestException('Button texts cannot be repeated', 'Button IDs cannot be repeated.');
     }
+    return data;
 
-    return await this.sendMessageWithTyping(
+    /* return await this.sendMessageWithTyping(
       data.number,
       {
         text: !embeddedMedia?.mediaKey ? data.title : undefined,
@@ -1166,7 +1167,7 @@ export class BusinessStartupService extends ChannelStartupService {
         mentionsEveryOne: data?.mentionsEveryOne,
         mentioned: data?.mentioned,
       },
-    );
+    ); */
   }
 
   public async locationMessage(data: SendLocationDto) {
