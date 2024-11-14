@@ -844,7 +844,8 @@ export class BusinessStartupService extends ChannelStartupService {
             formattedText += `▶️ ${item.reply?.title}\n`;
           }
           message = { conversation: `${message['text'] || 'Select'}\n` + formattedText };
-          return await this.post(content, 'messages');
+          //return await this.post(content, 'messages');
+          return content;
         }
         if (message['listMessage']) {
           content = {
